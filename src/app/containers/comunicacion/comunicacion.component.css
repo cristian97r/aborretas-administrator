@@ -1,0 +1,15 @@
+* {
+    height: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+.chatRoom {
+    height: 82.8vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
