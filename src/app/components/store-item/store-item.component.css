@@ -25,12 +25,8 @@
     background-color: #0FA;
 }
 
-.busy{
-    background-color: #FB0;
-}
-
 .offline{
-    background-color: #888;
+    background-color: rgb(189, 41, 41);
 }
 
 .status{

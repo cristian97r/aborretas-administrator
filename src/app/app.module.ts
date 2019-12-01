@@ -6,7 +6,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireDatabaseModule } from "@angular/fire/database"
 import { AngularFireAuthModule } from "@angular/fire/auth"
 
-import {environment} from "../environments/environment"
+import { environment } from "../environments/environment"
 
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
@@ -25,6 +25,8 @@ import { ComunicacionComponent } from './containers/comunicacion/comunicacion.co
 
 import { ChatService } from "./services/chat.service"
 import { AuthService } from "./services/auth.service"
+import { AuthGuard } from "./auth.guard"
+import { AngularFirestoreModule } from '@angular/fire/firestore';
 
 
 @NgModule({
@@ -53,9 +55,10 @@ import { AuthService } from "./services/auth.service"
     AngularFireModule,
     AngularFireAuthModule,
     AngularFireDatabaseModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFirestoreModule,
+    AngularFireModule.initializeApp(environment.firebase),
   ],
-  providers: [AuthService, ChatService],
+  providers: [AuthService, ChatService, AuthGuard],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

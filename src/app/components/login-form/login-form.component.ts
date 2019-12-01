@@ -15,9 +15,12 @@ export class LoginFormComponent {
   constructor(private authService: AuthService, private router: Router) { }
 
   login() {
-    console.log('login() called from login-form component');
     this.authService.login(this.email, this.password)
+    .then(user => {
+      this.authService.setUserStatus("online")
+    })
     .catch(error => this.errorMsg = error.message);
+    this.errorMsg ? console.log("there's an error") : null
   }
 
 }

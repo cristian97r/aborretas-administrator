@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from "rxjs"
-import {AngularFireAuth} from "@angular/fire/auth"
+import { AngularFireAuth } from "@angular/fire/auth"
 import { AngularFireDatabase } from "@angular/fire/database"
 
 
@@ -8,6 +9,7 @@ import { AuthService } from '../../services/auth.service';
 import { ChatService } from "../../services/chat.service"
 
 import { ChatMessage } from "../../models/chat-message.model"
+import { User } from "../../models/user.model"
 
 import * as firebase from "firebase/app"
 
@@ -19,41 +21,32 @@ import * as firebase from "firebase/app"
   styleUrls: ['./nav-bar.component.css']
 })
 export class NavBarComponent implements OnInit {
-  user: Observable<firebase.User>;
-  userN: firebase.User;
+  user: Observable<User>;
   userEmail: string;
   userName: string;
 
-  constructor(private authService: AuthService, 
-    private db: AngularFireDatabase, 
-    private afAuth: AngularFireAuth) {
-      this.afAuth.authState.subscribe(auth => {
-        if (auth !== undefined && auth !== null) {
-          this.userN = auth;
-        }
-  
-        this.getUser().subscribe(a => {
-          this.userName = a.displayName;
-        });
-      });
-    }
+  constructor(private authService: AuthService,
+    private db: AngularFireDatabase,
+    private afAuth: AngularFireAuth,
+    private router: Router,
+    public auth: AuthService) {
+  }
 
   ngOnInit() {
     this.user = this.authService.authUser();
-    this.user.subscribe(user => { 
+    this.user.subscribe(user => {
       if (user) {
         this.userEmail = user.email;
+        this.userName = user.displayName
+      } else {
+        this.userName = ""
       }
     });
+
+
   }
 
-  getUser(): Observable<any> {
-    const userId = this.userN.uid;
-    const path = `/users/${userId}`;
-    return this.db.object(path).valueChanges();
-  }
-
-  logout() {
-    this.authService.logout();
+  signOut() {
+    this.authService.logout()
   }
 }

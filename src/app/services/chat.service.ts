@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from "@angular/fire/database"
-import {AngularFireAuth} from "@angular/fire/auth"
+import { AngularFireAuth } from "@angular/fire/auth"
 import { Observable } from "rxjs"
 import { AuthService } from "../services/auth.service"
 import * as firebase from "firebase/app"
 
 import { ChatMessage } from "../models/chat-message.model"
+import { AngularFirestore } from '@angular/fire/firestore';
 
 
 @Injectable({
@@ -17,8 +18,10 @@ export class ChatService {
   chatMessage: ChatMessage;
   userName: string;
 
-  constructor( private db: AngularFireDatabase, private afAuth: AngularFireAuth ) { 
-    
+  constructor(private db: AngularFireDatabase,
+    private afAuth: AngularFireAuth,
+    private afs: AngularFirestore) {
+
     this.afAuth.authState.subscribe(auth => {
       if (auth !== undefined && auth !== null) {
         this.user = auth;
@@ -28,19 +31,19 @@ export class ChatService {
         this.userName = a.displayName;
       });
     });
-}
+  }
 
 
-getUser(): Observable<any> {
-  const userId = this.user.uid;
-  const path = `/users/${userId}`;
-  return this.db.object(path).valueChanges();
-}
+  getUser(): Observable<any> {
+    const userId = this.user.uid;
+    const path = `/users/${userId}`;
+    return this.afs.doc(path).valueChanges();
+  }
 
-getUsers(): Observable<any> {
-  const path = `/users`;
-  return this.db.list(path).valueChanges();
-}
+  getUsers(): Observable<any> {
+    const path = `/users`;
+    return this.afs.collection(path).valueChanges();
+  }
 
 
 
@@ -57,7 +60,7 @@ getUsers(): Observable<any> {
   }
 
   getMessages(): AngularFireList<ChatMessage> {
-    return this.db.list('messages',  ref => ref.orderByKey().limitToLast(25));
+    return this.db.list('messages', ref => ref.orderByKey().limitToLast(25));
   }
 
   getMessagesForFeed(): Observable<ChatMessage[]> {
@@ -65,13 +68,13 @@ getUsers(): Observable<any> {
   }
 
   getTimeStamp() {
-   const now = new Date()
-   const date = now.getUTCFullYear() + "/" +
-                (now.getUTCMonth() + 1) + "/" +
-                now.getUTCDate()
-   const time = now.getUTCHours() + ":" +
-                (now.getUTCMinutes() + 1) + ":" +
-                now.getUTCSeconds()
+    const now = new Date()
+    const date = now.getUTCFullYear() + "/" +
+      (now.getUTCMonth() + 1) + "/" +
+      now.getUTCDate()
+    const time = now.getUTCHours() + ":" +
+      (now.getUTCMinutes() + 1) + ":" +
+      now.getUTCSeconds()
 
     return (date + " " + time)
   }
