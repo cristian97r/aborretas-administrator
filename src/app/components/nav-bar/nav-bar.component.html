@@ -1,4 +1,7 @@
-<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark" style="height: 9%;">
+<nav
+  class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark"
+  style="height: 9%;"
+>
   <button
     class="navbar-toggler"
     type="button"
@@ -11,17 +14,44 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" *ngIf="!(userName)" routerLink="/signup">Sign Up</a>
-    <a class="navbar-brand" *ngIf="!(userName)" routerLink="/login">Login</a>
-    <a class="navbar-brand" *ngIf="(userName) else" >Hola! {{ userName }}</a>
+    <a class="navbar-brand" *ngIf="!userName" routerLink="/signup"
+      >Crear Cuenta</a
+    >
+    <a class="navbar-brand" *ngIf="!userName" routerLink="/login"
+      >inicia Sesión</a
+    >
+    <a class="navbar-brand" *ngIf="userName; else">Hola! {{ userName }}</a>
     <ng-template #elseBlock></ng-template>
     <div class="navbar-nav mr-auto mt-2 mt-lg-0 ulclass mx-auto">
-      <div class="nav-item"> <a [routerLink]="['/inicio']" routerLinkActive="router-link-active"  class="nav-link">Inicio</a></div>
+      <div class="nav-item">
+        <a
+          [routerLink]="['/inicio']"
+          routerLinkActive="router-link-active"
+          class="nav-link"
+          >Inicio</a
+        >
+      </div>
       <div class="nav-item"><a class="nav-link">Ventas</a></div>
-      <div class="nav-item"><a [routerLink]="['/tiendas']" routerLinkActive="router-link-active"  class="nav-link">Tiendas</a></div>
+      <div class="nav-item">
+        <a
+          [routerLink]="['/tiendas']"
+          routerLinkActive="router-link-active"
+          class="nav-link"
+          >Tiendas</a
+        >
+      </div>
       <div class="nav-item"><a class="nav-link">Balance</a></div>
-      <div class="nav-item"><a [routerLink]="['/comunicacion']" routerLinkActive="router-link-active"  class="nav-link">Comunicación</a></div>
-      <div *ngIf="(userName)" class="nav-item"><a (click)="signOut()" class="nav-link">Cerrar Sesión</a></div>
+      <div class="nav-item">
+        <a
+          [routerLink]="['/comunicacion']"
+          routerLinkActive="router-link-active"
+          class="nav-link"
+          >Comunicación</a
+        >
+      </div>
+      <div *ngIf="userName" class="nav-item">
+        <a (click)="signOut()" class="nav-link">Cerrar Sesión</a>
+      </div>
     </div>
   </div>
 </nav>

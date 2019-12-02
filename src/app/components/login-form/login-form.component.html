@@ -1,10 +1,22 @@
 <div class="container">
-    <div class="loginCard">
-        <h2 class="heading">Inicia Sesión</h2>
-        <input [(ngModel)]="email" type="email" name="email" class="formInput" />
-        <input type="password" [(ngModel)]="password" name="password" class="formInput" />
-        <button class="btn" id="btn-login" (click)="login()">
-            Log In
-        </button>
-    </div>
+  <div class="loginCard">
+    <h2 class="heading">Inicia Sesión</h2>
+    <input
+      [(ngModel)]="email"
+      type="email"
+      name="email"
+      class="formInput"
+      placeholder="Correo electrónico"
+    />
+    <input
+      type="password"
+      [(ngModel)]="password"
+      name="password"
+      class="formInput"
+      placeholder="Contraseña"
+    />
+    <button class="btn" id="btn-login" (click)="login()">
+      Log In
+    </button>
+  </div>
 </div>

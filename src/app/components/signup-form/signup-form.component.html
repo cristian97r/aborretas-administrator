@@ -1,34 +1,92 @@
-<div class="container">
-        <div class="signUpCard">
-         <form #signupForm="ngForm">
-          <h2 class="heading">Sign Up</h2>
-      
-          <label class="label">Email</label>
-             <input 
-             type="email" name="email"
-             placeholder="Enter your email address" 
-             [(ngModel)]="email" class="formInput"
-             maxlength="60" required/>
-      
-          <label class="label">Password</label>
-            <input 
-              type="password" name="password"
-              placeholder="Choose a password" 
-              [(ngModel)]="password" class="formInput" 
-              required/>
-      
-          <label class="label">Display Name</label>
-            <input 
-              name="displayName"
-              placeholder="Enter a display name" 
-              [(ngModel)]="displayName" class="formInput"
-              maxlength="12" required/>
-      
-            <button [disabled]="!signupForm.form.valid" 
-                    type="submit" (click)="signUp()"
-                    class="btn" id="btn-signUp">
-                    Sign Up
-            </button>
-          </form>
-        </div>
+<div class="containerr">
+  <div class="signUpCard">
+    <form #signupForm="ngForm">
+      <h2 class="heading">Sign Up</h2>
+
+      <label class="label">Email</label>
+      <input
+        type="email"
+        name="email"
+        placeholder="Enter your email address"
+        [(ngModel)]="email"
+        class="formInput"
+        maxlength="60"
+        required
+      />
+
+      <label class="label">Password</label>
+      <input
+        type="password"
+        name="password"
+        placeholder="Choose a password"
+        [(ngModel)]="password"
+        class="formInput"
+        required
+      />
+
+      <label class="label">Display Name</label>
+      <input
+        name="displayName"
+        placeholder="Enter a display name"
+        [(ngModel)]="displayName"
+        class="formInput"
+        maxlength="12"
+        required
+      />
+      <label class="label">Rol</label>
+      <select required [(ngModel)]="role" name="role" id="role">
+        <option value="admin">Administrador</option>
+        <option value="store">Aborreta</option>
+      </select>
+      <h3>{{ role }}</h3>
+      <div *ngIf="role == 'store'">
+        <label for="agm-map">Haz click en la ubicacion de la tienda</label>
+        <agm-map
+          class="my-4 w-100d"
+          id="agm-map"
+          width="400"
+          [latitude]="lat"
+          [longitude]="lng"
+          style="height: 400px;"
+          (mapClick)="onMapClick($event)"
+        >
+          <agm-marker
+            *ngIf="locationChosen"
+            [latitude]="lat"
+            [longitude]="lng"
+          ></agm-marker>
+        </agm-map>
+
+        <label class="label">Nombre De la Tienda</label>
+        <input
+          name="name"
+          placeholder="Escriba nombre de la tienda aqui"
+          [(ngModel)]="name"
+          class="formInput"
+          maxlength="20"
+          required
+        />
+
+        <label class="label">Dirección</label>
+        <input
+          name="address"
+          placeholder="Enter a display name"
+          [(ngModel)]="address"
+          class="formInput"
+          maxlength="50"
+          required
+        />
       </div>
+
+      <button
+        [disabled]="!signupForm.form.valid"
+        type="submit"
+        (click)="signUp()"
+        class="btn"
+        id="btn-signUp"
+      >
+        Sign Up
+      </button>
+    </form>
+  </div>
+</div>
