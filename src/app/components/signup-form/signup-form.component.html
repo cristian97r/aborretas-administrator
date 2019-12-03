@@ -1,92 +1,113 @@
-<div class="containerr">
-  <div class="signUpCard">
-    <form #signupForm="ngForm">
-      <h2 class="heading">Sign Up</h2>
+<div class="container">
+  <form class="form-signin bg-light border-top-0 rounded mx-auto">
+    <h1 class="h3 my-4 font-weight-normal text-center">Crea una Cuenta</h1>
 
-      <label class="label">Email</label>
+    <div class="form-group">
+      <label for="email">Email</label>
       <input
         type="email"
         name="email"
-        placeholder="Enter your email address"
+        placeholder="Escriba su correo electrónico"
         [(ngModel)]="email"
-        class="formInput"
+        class="form-control"
         maxlength="60"
         required
       />
+    </div>
 
-      <label class="label">Password</label>
+    <div class="form-group">
+      <label>Password</label>
       <input
         type="password"
         name="password"
-        placeholder="Choose a password"
+        placeholder="Escriba su contraseña"
         [(ngModel)]="password"
-        class="formInput"
+        class="form-control"
         required
       />
+    </div>
 
-      <label class="label">Display Name</label>
+    <div class="form-group">
+      <label>Nombre de usuario</label>
       <input
         name="displayName"
-        placeholder="Enter a display name"
+        placeholder="Escriba su nombre de usuario"
         [(ngModel)]="displayName"
-        class="formInput"
+        class="form-control"
         maxlength="12"
         required
       />
-      <label class="label">Rol</label>
-      <select required [(ngModel)]="role" name="role" id="role">
+    </div>
+
+    <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="rol">Rol </label>
+      </div>
+      <select
+        required
+        [(ngModel)]="role"
+        name="role"
+        class="custom-select"
+        id="rol"
+      >
         <option value="admin">Administrador</option>
         <option value="store">Aborreta</option>
       </select>
-      <h3>{{ role }}</h3>
-      <div *ngIf="role == 'store'">
-        <label for="agm-map">Haz click en la ubicacion de la tienda</label>
-        <agm-map
-          class="my-4 w-100d"
-          id="agm-map"
-          width="400"
+    </div>
+    <div class="my-2" *ngIf="role == 'store'">
+      <label class="input-group-text"
+        >Haz click en la ubicacion de la tienda</label
+      >
+      <agm-map
+        class="my-4 w-100d"
+        id="agm-map"
+        width="400"
+        [latitude]="lat"
+        [longitude]="lng"
+        style="height: 400px;"
+        (mapClick)="onMapClick($event)"
+      >
+        <agm-marker
+          *ngIf="locationChosen"
           [latitude]="lat"
           [longitude]="lng"
-          style="height: 400px;"
-          (mapClick)="onMapClick($event)"
-        >
-          <agm-marker
-            *ngIf="locationChosen"
-            [latitude]="lat"
-            [longitude]="lng"
-          ></agm-marker>
-        </agm-map>
+        ></agm-marker>
+      </agm-map>
 
-        <label class="label">Nombre De la Tienda</label>
+      <div class="form-group">
+        <label>Nombre De la Tienda</label>
         <input
           name="name"
           placeholder="Escriba nombre de la tienda aqui"
           [(ngModel)]="name"
-          class="formInput"
+          class="form-control"
           maxlength="20"
-          required
-        />
-
-        <label class="label">Dirección</label>
-        <input
-          name="address"
-          placeholder="Enter a display name"
-          [(ngModel)]="address"
-          class="formInput"
-          maxlength="50"
           required
         />
       </div>
 
+      <div class="form-group">
+        <label>Dirección</label>
+        <input
+          name="address"
+          placeholder="Dirección de la tienda"
+          [(ngModel)]="address"
+          class="form-control"
+          maxlength="50"
+          required
+        />
+      </div>
+    </div>
+    <div class="w-100 d-flex justify-content-center center">
       <button
-        [disabled]="!signupForm.form.valid"
         type="submit"
         (click)="signUp()"
-        class="btn"
-        id="btn-signUp"
+        class="mt-3 btn btn-lg btn-primary btn-block w-25 center"
       >
-        Sign Up
+        Crear Cuenta
       </button>
-    </form>
-  </div>
+    </div>
+
+    <p class="mt-3 mb-3 text-muted text-center">&copy;2019</p>
+  </form>
 </div>

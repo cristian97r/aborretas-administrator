@@ -1,22 +1,41 @@
-<div class="container">
-  <div class="loginCard">
-    <h2 class="heading">Inicia Sesión</h2>
-    <input
-      [(ngModel)]="email"
-      type="email"
-      name="email"
-      class="formInput"
-      placeholder="Correo electrónico"
+<div class="container text-center">
+  <form class="form-signin bg-light border-top-0 rounded mx-auto">
+    <img
+      class="mb-4"
+      src="https://via.placeholder.com/150"
+      alt=""
+      width="72"
+      height="72"
     />
+    <h1 class="h3 mb-3 font-weight-normal">Iniciar Sesión</h1>
+    <label for="inputEmail" class="sr-only">correo Electrónico</label>
+    <input
+      type="email"
+      [(ngModel)]="email"
+      name="email"
+      id="inputEmail"
+      class="form-control"
+      placeholder="Correo Electrónico"
+      required
+      autofocus
+    />
+    <label for="inputPassword" class="sr-only">Constraseña</label>
     <input
       type="password"
       [(ngModel)]="password"
       name="password"
-      class="formInput"
-      placeholder="Contraseña"
+      id="inputPassword"
+      class="form-control"
+      placeholder="Constraseña"
+      required
     />
-    <button class="btn" id="btn-login" (click)="login()">
-      Log In
+    <button
+      (click)="login()"
+      class="btn btn-lg btn-primary btn-block"
+      type="submit"
+    >
+      Sign in
     </button>
-  </div>
+    <p class="mt-5 mb-3 text-muted">&copy; 2019</p>
+  </form>
 </div>

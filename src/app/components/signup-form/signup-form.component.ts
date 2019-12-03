@@ -6,7 +6,7 @@ import { AborretaService } from "src/app/services/aborreta.service";
 @Component({
   selector: "app-signup-form",
   templateUrl: "./signup-form.component.html",
-  styleUrls: ["./signup-form.component.css"]
+  styleUrls: ["./signup-form.component.scss"]
 })
 export class SignupFormComponent implements OnInit {
   email: string;

@@ -14,12 +14,22 @@
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
-    <a class="navbar-brand" *ngIf="!userName" routerLink="/signup"
-      >Crear Cuenta</a
-    >
-    <a class="navbar-brand" *ngIf="!userName" routerLink="/login"
-      >inicia Sesión</a
-    >
+    <div class="dropdown" *ngIf="!userName">
+      <button
+        class="btn btn-secondary dropdown-toggle"
+        type="button"
+        id="dropdownMenuButton"
+        data-toggle="dropdown"
+        aria-haspopup="true"
+        aria-expanded="false"
+      >
+        Menú
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <a class="dropdown-item" routerLink="/signup">Crear Cuenta</a>
+        <a class="dropdown-item" routerLink="/login">inicia Sesión</a>
+      </div>
+    </div>
     <a class="navbar-brand" *ngIf="userName; else">Hola! {{ userName }}</a>
     <ng-template #elseBlock></ng-template>
     <div class="navbar-nav mr-auto mt-2 mt-lg-0 ulclass mx-auto">

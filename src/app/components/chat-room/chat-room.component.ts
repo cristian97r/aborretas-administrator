@@ -3,7 +3,7 @@ import { Component, OnInit, ViewChild, ElementRef, AfterViewChecked} from '@angu
 @Component({
   selector: 'app-chat-room',
   templateUrl: './chat-room.component.html',
-  styleUrls: ['./chat-room.component.css']
+  styleUrls: ['./chat-room.component.scss']
 })
 export class ChatRoomComponent implements OnInit, AfterViewChecked {
   @ViewChild('scroller', {static: false}) private feedContainer: ElementRef;
