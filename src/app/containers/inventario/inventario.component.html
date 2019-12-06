@@ -58,38 +58,12 @@
     <div class="col-8">
       <div class="container w-75 mt-4 bg-light center products">
         <ul class="list-group">
-          <li class="list-group-item list-group-item-dark my-1">
-            Vista detallada de producto
-          </li>
-          <li class="list-group-item list-group-item-dark my-1">
-            Vista detallada de producto
-          </li>
-          <li class="list-group-item list-group-item-dark my-1">
-            Vista detallada de producto
-          </li>
-          <li class="list-group-item list-group-item-dark my-1">
-            Vista detallada de producto
-          </li>
-          <li class="list-group-item list-group-item-dark my-1">
-            Vista detallada de producto
-          </li>
-          <li class="list-group-item list-group-item-dark my-1">
-            Vista detallada de producto
-          </li>
-          <li class="list-group-item list-group-item-dark my-1">
-            Vista detallada de producto
-          </li>
-          <li class="list-group-item list-group-item-dark my-1">
-            Vista detallada de producto
-          </li>
-          <li class="list-group-item list-group-item-dark my-1">
-            Vista detallada de producto
-          </li>
-          <li class="list-group-item list-group-item-dark my-1">
-            Vista detallada de producto
-          </li>
-          <li class="list-group-item list-group-item-dark my-1">
-            Vista detallada de producto
+          <li
+            *ngFor="let product of products"
+            class="list-group-item list-group-item-dark my-1"
+          >
+            {{ product.nombre }}
+            <span class="ml-auto"> {{ product.precio }}$</span>
           </li>
         </ul>
       </div>

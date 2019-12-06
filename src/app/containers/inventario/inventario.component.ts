@@ -14,6 +14,7 @@ export class InventarioComponent implements OnInit {
   nombre: string;
   precio: string;
   storeId: string;
+  products: Array<object>;
 
   constructor(private authService: AuthService, private store: StoresService) {}
 
@@ -22,15 +23,35 @@ export class InventarioComponent implements OnInit {
     this.user.subscribe(user => {
       if (user) {
         this.storeId = user.storeId;
+        const path = `stores/${this.storeId}/productos`;
+        this.setProducts(path);
       }
     });
   }
 
   onClickGuardar() {
+    const path = `stores/${this.storeId}/productos`;
     const data = {
       nombre: this.nombre,
       precio: parseInt(this.precio)
     };
-    this.store.addProduct(data, this.storeId).then(doc => console.log(doc));
+    this.store.addProduct(data, path);
+    this.setProducts(path);
+  }
+
+  setProducts(path) {
+    this.store.getProducts(path).subscribe(products => {
+      let productos = [];
+      products.forEach(product => {
+        const ref = product.data();
+        const producto = {
+          id: product.id,
+          precio: ref.precio,
+          nombre: ref.nombre
+        };
+        productos.push(producto);
+      });
+      this.products = productos;
+    });
   }
 }

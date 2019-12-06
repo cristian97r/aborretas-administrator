@@ -71,7 +71,11 @@ export class StoresService {
     return this.router.navigate(["/"]);
   }
 
-  public addProduct(data: object, storeId: string) {
-    return this.afs.collection(`stores/${storeId}/productos`).add(data);
+  public addProduct(data: object, path: string) {
+    return this.afs.collection(path).add(data);
+  }
+
+  public getProducts(path) {
+    return this.afs.collection(path).get();
   }
 }

@@ -5,6 +5,7 @@ import { FormsModule } from "@angular/forms";
 import { AngularFireModule } from "@angular/fire";
 import { AngularFireDatabaseModule } from "@angular/fire/database";
 import { AngularFireAuthModule } from "@angular/fire/auth";
+import { MDBBootstrapModule } from "angular-bootstrap-md";
 
 import { environment } from "../environments/environment";
 
@@ -28,7 +29,6 @@ import { AuthService } from "./services/auth.service";
 import { AuthGuard } from "./auth.guard";
 import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { CarritoComponent } from "./containers/carrito/carrito.component";
-import { MDBBootstrapModule } from "angular-bootstrap-md";
 import { InventarioComponent } from "./containers/inventario/inventario.component";
 import { AddProductModalComponent } from "./components/add-product-modal/add-product-modal.component";
 

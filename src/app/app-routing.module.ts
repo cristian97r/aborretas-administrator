@@ -17,8 +17,8 @@ const routes: Routes = [
     component: ComunicacionComponent,
     canActivate: [AuthGuard]
   },
-  { path: "carrito", component: CarritoComponent },
-  { path: "inventario", component: InventarioComponent },
+  { path: "carrito", component: CarritoComponent, canActivate: [AuthGuard] },
+  { path: "inventario", component: InventarioComponent, canActivate: [AuthGuard] },
   { path: "login", component: LoginFormComponent },
   { path: "signup", component: SignupFormComponent },
   { path: "", redirectTo: "login", pathMatch: "full" }
