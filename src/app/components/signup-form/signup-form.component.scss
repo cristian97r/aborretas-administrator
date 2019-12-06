@@ -1,0 +1,30 @@
+.container {
+  max-height: 100vh;
+  height: 100vh;
+  max-width: 100%;
+  margin: 0;
+  /* url('../../assets/img/login-5.png') center center no-repeat;; */
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+agm-map {
+  height: 200px;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 650px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-group {
+  padding: 2px 20px 2px 20px;
+}
+
+.input-group {
+  padding: 2px 20px 2px 20px;
+}

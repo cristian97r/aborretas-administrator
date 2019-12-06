@@ -1,0 +1,159 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class=" col-md-4 pt-4 bg-light sidebar">
+      <form class="bd-search d-flex align-items-center">
+        <input
+          type="search"
+          class="form-control"
+          id="search-input"
+          placeholder="Buscar..."
+          aria-label="Search for..."
+          autocomplete="off"
+        />
+      </form>
+
+      <nav class=" bd-links d-flex" id="bd-docs-nav">
+        <ul class="list-group">
+          <li
+            [class.active]="hovered"
+            (mouseover)="hovered = true"
+            (mouseout)="statuss ? (hovered = true) : (hovered = false)"
+            class="list-group-item"
+            (click)="statuss = !statuss"
+            [ngClass]="statuss ? 'success' : 'danger'"
+          >
+            Cras justo odio
+          </li>
+          <li
+            [class.active]="hoveredd"
+            (mouseover)="hoveredd = true"
+            (mouseout)="status ? (hoveredd = true) : (hoveredd = false)"
+            class="list-group-item"
+            (click)="status = !status"
+            [ngClass]="status ? 'success' : 'danger'"
+          >
+            Cras justo odio
+          </li>
+          <li class="list-group-item">Dapibus ac facilisis in</li>
+          <li class="list-group-item">Morbi leo risus</li>
+          <li class="list-group-item">Porta ac consectetur ac</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+          <li class="list-group-item">Vestibulum at eros</li>
+        </ul>
+      </nav>
+      <div class="d-flex justify-content-around align-items-end my-2">
+        <button class="btn btn-primary">Editar</button>
+        <button class="btn btn-primary" (click)="basicModal.show()">
+          Añadir
+        </button>
+        <button class="btn btn-primary">Eliminar</button>
+      </div>
+    </div>
+    <div class="col-8">
+      <div class="container w-75 mt-4 bg-light center products">
+        <ul class="list-group">
+          <li class="list-group-item list-group-item-dark my-1">
+            Vista detallada de producto
+          </li>
+          <li class="list-group-item list-group-item-dark my-1">
+            Vista detallada de producto
+          </li>
+          <li class="list-group-item list-group-item-dark my-1">
+            Vista detallada de producto
+          </li>
+          <li class="list-group-item list-group-item-dark my-1">
+            Vista detallada de producto
+          </li>
+          <li class="list-group-item list-group-item-dark my-1">
+            Vista detallada de producto
+          </li>
+          <li class="list-group-item list-group-item-dark my-1">
+            Vista detallada de producto
+          </li>
+          <li class="list-group-item list-group-item-dark my-1">
+            Vista detallada de producto
+          </li>
+          <li class="list-group-item list-group-item-dark my-1">
+            Vista detallada de producto
+          </li>
+          <li class="list-group-item list-group-item-dark my-1">
+            Vista detallada de producto
+          </li>
+          <li class="list-group-item list-group-item-dark my-1">
+            Vista detallada de producto
+          </li>
+          <li class="list-group-item list-group-item-dark my-1">
+            Vista detallada de producto
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  mdbModal
+  #basicModal="mdbModal"
+  class="modal fade left"
+  tabindex="-1"
+  role="dialog"
+  aria-labelledby="myBasicModalLabel"
+  aria-hidden="true"
+>
+  <div class="modal-dialog modal-full-height modal-left">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button
+          type="button"
+          class="close pull-left"
+          aria-label="Close"
+          (click)="basicModal.hide()"
+        >
+          <span aria-hidden="true">×</span>
+        </button>
+        <h4 class="modal-title w-100" id="myModalLabel">Añadir Producto</h4>
+      </div>
+      <div class="modal-body">
+        <form>
+          <input
+            [(ngModel)]="nombre"
+            name="nombre"
+            class="form-control form-control-lg"
+            type="text"
+            placeholder="Nombre del producto"
+          />
+          <input
+            [(ngModel)]="precio"
+            name="precio"
+            class="form-control form-control-lg"
+            type="text"
+            placeholder="Precio"
+          />
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button
+          type="button"
+          class="btn btn-danger btn-lg"
+          aria-label="Close"
+          (click)="basicModal.hide()"
+        >
+          Cerrar
+        </button>
+        <button
+          type="button"
+          (click)="onClickGuardar(); basicModal.hide()"
+          class="btn btn-primary btn-lg"
+        >
+          Guardar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

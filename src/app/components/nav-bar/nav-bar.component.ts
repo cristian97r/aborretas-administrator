@@ -1,52 +1,37 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Observable } from "rxjs"
-import { AngularFireAuth } from "@angular/fire/auth"
-import { AngularFireDatabase } from "@angular/fire/database"
+import { Component, OnInit } from "@angular/core";
+import { Observable } from "rxjs";
 
+import { AuthService } from "../../services/auth.service";
 
-import { AuthService } from '../../services/auth.service';
-import { ChatService } from "../../services/chat.service"
-
-import { ChatMessage } from "../../models/chat-message.model"
-import { User } from "../../models/user.model"
-
-import * as firebase from "firebase/app"
-
-
+import { User } from "../../models/user.model";
 
 @Component({
-  selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html',
-  styleUrls: ['./nav-bar.component.scss']
+  selector: "app-nav-bar",
+  templateUrl: "./nav-bar.component.html",
+  styleUrls: ["./nav-bar.component.scss"]
 })
 export class NavBarComponent implements OnInit {
   user: Observable<User>;
   userEmail: string;
   userName: string;
+  storeId: string;
 
-  constructor(private authService: AuthService,
-    private db: AngularFireDatabase,
-    private afAuth: AngularFireAuth,
-    private router: Router,
-    public auth: AuthService) {
-  }
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
     this.user = this.authService.authUser();
     this.user.subscribe(user => {
       if (user) {
         this.userEmail = user.email;
-        this.userName = user.displayName
+        this.userName = user.displayName;
+        this.storeId = user.storeId;
       } else {
-        this.userName = ""
+        this.userName = "";
       }
     });
-
-
   }
 
   signOut() {
-    this.authService.logout()
+    this.authService.logout();
   }
 }

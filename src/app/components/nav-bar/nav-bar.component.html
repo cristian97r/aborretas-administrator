@@ -1,5 +1,5 @@
 <nav
-  class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark"
+  class="navbar sticky-top navbar-expand-sm navbar-dark bg-dark"
   style="height: 9%;"
 >
   <button
@@ -30,14 +30,18 @@
         <a class="dropdown-item" routerLink="/login">inicia Sesión</a>
       </div>
     </div>
-    <a class="navbar-brand" *ngIf="userName; else">Hola! {{ userName }}</a>
-    <ng-template #elseBlock></ng-template>
-    <div class="navbar-nav mr-auto mt-2 mt-lg-0 ulclass mx-auto">
+    <a class="font-weight-light text-white navbar-brand" *ngIf="userName; else"
+      >Hola! {{ userName }}</a
+    >
+    <div
+      *ngIf="!storeId; else elseBlock"
+      class="navbar-nav mr-auto mt-2 mt-lg-0 ulclass mx-auto"
+    >
       <div class="nav-item">
         <a
           [routerLink]="['/inicio']"
-          routerLinkActive="router-link-active"
-          class="nav-link"
+          routerLinkActive="active"
+          class="nav-link "
           >Inicio</a
         >
       </div>
@@ -45,7 +49,7 @@
       <div class="nav-item">
         <a
           [routerLink]="['/tiendas']"
-          routerLinkActive="router-link-active"
+          routerLinkActive="active"
           class="nav-link"
           >Tiendas</a
         >
@@ -54,7 +58,7 @@
       <div class="nav-item">
         <a
           [routerLink]="['/comunicacion']"
-          routerLinkActive="router-link-active"
+          routerLinkActive="active"
           class="nav-link"
           >Comunicación</a
         >
@@ -63,5 +67,38 @@
         <a (click)="signOut()" class="nav-link">Cerrar Sesión</a>
       </div>
     </div>
+    <ng-template #elseBlock>
+      <div class="navbar-nav mr-auto mt-2 mt-lg-0 ulclass mx-auto">
+        <div class="nav-item">
+          <a
+            [routerLink]="['/carrito']"
+            routerLinkActive="active"
+            class="nav-link "
+            >Carrito</a
+          >
+        </div>
+        <div class="nav-item"><a class="nav-link">Ventas</a></div>
+        <div class="nav-item">
+          <a
+            [routerLink]="['/inventario']"
+            routerLinkActive="active"
+            class="nav-link"
+            >Inventario</a
+          >
+        </div>
+        <div class="nav-item"><a class="nav-link">Balance</a></div>
+        <div class="nav-item">
+          <a
+            [routerLink]="['/comunicacion']"
+            routerLinkActive="active"
+            class="nav-link"
+            >Comunicación</a
+          >
+        </div>
+        <div *ngIf="userName" class="nav-item">
+          <a (click)="signOut()" class="nav-link">Cerrar Sesión</a>
+        </div>
+      </div>
+    </ng-template>
   </div>
 </nav>
