@@ -31,6 +31,7 @@ import { AngularFirestoreModule } from "@angular/fire/firestore";
 import { CarritoComponent } from "./containers/carrito/carrito.component";
 import { InventarioComponent } from "./containers/inventario/inventario.component";
 import { AddProductModalComponent } from "./components/add-product-modal/add-product-modal.component";
+import { VentasComponent } from './containers/ventas/ventas.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { AddProductModalComponent } from "./components/add-product-modal/add-pro
     ComunicacionComponent,
     CarritoComponent,
     InventarioComponent,
-    AddProductModalComponent
+    AddProductModalComponent,
+    VentasComponent
   ],
   imports: [
     BrowserModule,

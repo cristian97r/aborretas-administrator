@@ -1,7 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Observable } from "rxjs";
+
 import { AuthService } from "../../services/auth.service";
 import { StoresService } from "../../services/stores.service";
+import { Product } from "../../services/aborreta.service";
 import { User } from "../../models/user.model";
 
 @Component({
@@ -40,18 +42,7 @@ export class InventarioComponent implements OnInit {
   }
 
   setProducts(path) {
-    this.store.getProducts(path).subscribe(products => {
-      let productos = [];
-      products.forEach(product => {
-        const ref = product.data();
-        const producto = {
-          id: product.id,
-          precio: ref.precio,
-          nombre: ref.nombre
-        };
-        productos.push(producto);
-      });
-      this.products = productos;
-    });
+    //Get products and add it to this.products array
+    this.products = this.store.getProducts(path);
   }
 }

@@ -15,27 +15,13 @@
       <nav class=" bd-links" id="bd-docs-nav">
         <ul class="list-group">
           <li
-            [class.active]="hovered"
-            (mouseover)="hovered = true"
-            (mouseout)="hovered = false"
-            class="list-group-item"
+            *ngFor="let product of products"
+            class="list-group-item items"
+            (click)="onProductClick($event.target.id)"
+            id="{{ product.id }}"
           >
-            Cras justo odio
+            {{ product.nombre }}
           </li>
-          <li class="list-group-item">Dapibus ac facilisis in</li>
-          <li class="list-group-item">Morbi leo risus</li>
-          <li class="list-group-item">Porta ac consectetur ac</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-          <li class="list-group-item">Vestibulum at eros</li>
-          <li class="list-group-item">Vestibulum at eros</li>
         </ul>
       </nav>
     </div>
@@ -43,7 +29,7 @@
       <div class="row">
         <div class="col-12">
           <div class="jumbotron text-center">
-            <h1 class="display-4">TOTAL: 0.00$</h1>
+            <h1 class="display-4">TOTAL: {{ Total }}$</h1>
             <hr />
           </div>
         </div>
@@ -51,29 +37,20 @@
           <div class="jumbotron pt-3 pb-0 right-side">
             <h1 class="h5 font-weight-lighter ">Productos:</h1>
             <ul class="list-group products">
-              <li class="list-group-item text-white bg-info my-1">
-                Producto
-                <span class="ml-auto display-4"> 0.00$ </span>
-              </li>
-              <li class="list-group-item text-white bg-info my-1">
-                Producto
-                <span class="ml-auto display-4"> 0.00$ </span>
-              </li>
-              <li class="list-group-item text-white bg-info my-1">
-                Producto
-                <span class="ml-auto display-4"> 0.00$ </span>
-              </li>
-              <li class="list-group-item text-white bg-info my-1">
-                Producto
-                <span class="ml-auto display-4"> 0.00$ </span>
-              </li>
-              <li class="list-group-item text-white bg-info my-1">
-                Producto
-                <span class="ml-auto display-4"> 0.00$ </span>
+              <li
+                *ngFor="let product of productsList"
+                class="list-group-item text-white bg-info my-1"
+                id="{{ product.id }}"
+                (click)="deleteFromTheList($event.target.id)"
+              >
+                {{ product.nombre }}
+                <span class="ml-auto display-4"> {{ product.precio }}$ </span>
               </li>
             </ul>
             <div class="d-flex justify-content-center my-1">
-              <button class="btn btn-primary btn-lg p-3">Confirmar</button>
+              <button class="btn btn-primary btn-lg p-3" (click)="onCheckout()">
+                Confirmar
+              </button>
             </div>
           </div>
         </div>

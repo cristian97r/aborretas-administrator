@@ -76,6 +76,80 @@ export class StoresService {
   }
 
   public getProducts(path) {
-    return this.afs.collection(path).get();
+    let productos = [];
+    this.afs
+      .collection(path, ref => ref.orderBy("nombre", "asc"))
+      .get()
+      .subscribe(products => {
+        products.forEach(product => {
+          const ref = product.data();
+          const producto = {
+            id: product.id,
+            precio: ref.precio,
+            nombre: ref.nombre
+          };
+          productos.push(producto);
+        });
+      });
+    return productos;
+  }
+
+  getStores() {
+    let Stores = [];
+    this.afs
+      .collection("stores")
+      .get()
+      .subscribe(stores => {
+        stores.forEach(store => {
+          const ref = store.data();
+          const Store = {
+            id: store.id,
+            ...ref
+          };
+          Stores.push(Store);
+        });
+      });
+    return Stores;
+  }
+
+  getProduct(productId, storeId) {
+    let Product: Object;
+    const path = `stores/${storeId}/productos`;
+    const producto = this.afs
+      .collection(path)
+      .doc(productId)
+      .ref.get()
+      .then(doc => {
+        const ref = doc.data();
+        const producto = {
+          id: doc.id,
+          nombre: ref.nombre,
+          precio: ref.precio
+        };
+        return producto;
+      });
+    return producto;
+  }
+
+  checkout(data) {
+    this.afs.collection("sells").add(data);
+  }
+
+  getTimeStamp() {
+    const now = new Date();
+    const date =
+      now.getUTCFullYear() +
+      "/" +
+      (now.getUTCMonth() + 1) +
+      "/" +
+      now.getUTCDate();
+    const time =
+      now.getUTCHours() +
+      ":" +
+      (now.getUTCMinutes() + 1) +
+      ":" +
+      now.getUTCSeconds();
+
+    return date + " " + time;
   }
 }

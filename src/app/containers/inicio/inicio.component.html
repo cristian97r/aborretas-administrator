@@ -26,12 +26,30 @@
 
       <agm-map
         class="my-4 w-100"
-        id="myChart"
-        width="900"
+        style="height: 70vh;"
         [latitude]="lat"
         [longitude]="lng"
+        (mapClick)="onMapClick($event)"
       >
-        <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+        <agm-marker
+          *ngIf="locationChosen"
+          [latitude]="lat"
+          [longitude]="lng"
+        ></agm-marker>
+
+        <agm-marker
+          *ngFor="let store of stores"
+          [latitude]="store.lat"
+          [longitude]="store.lng"
+        >
+          <agm-info-window>
+            <div class="jumbotron">
+              <h4 class="display-4">{{ store.name }}</h4>
+              <hr />
+              <p class="text-info text-center">{{ store.address }}</p>
+            </div>
+          </agm-info-window>
+        </agm-marker>
       </agm-map>
 
       <h2>Tiendas</h2>
@@ -46,101 +64,11 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>1,001</td>
-              <td>Lorem</td>
-              <td>ipsum</td>
-              <td>dolor</td>
-            </tr>
-            <tr>
-              <td>1,002</td>
-              <td>amet</td>
-              <td>consectetur</td>
-              <td>adipiscing</td>
-            </tr>
-            <tr>
-              <td>1,003</td>
-              <td>Integer</td>
-              <td>nec</td>
-              <td>odio</td>
-            </tr>
-            <tr>
-              <td>1,003</td>
-              <td>libero</td>
-              <td>Sed</td>
-              <td>cursus</td>
-            </tr>
-            <tr>
-              <td>1,004</td>
-              <td>dapibus</td>
-              <td>diam</td>
-              <td>Sed</td>
-            </tr>
-            <tr>
-              <td>1,005</td>
-              <td>Nulla</td>
-              <td>quis</td>
-              <td>sem</td>
-            </tr>
-            <tr>
-              <td>1,006</td>
-              <td>nibh</td>
-              <td>elementum</td>
-              <td>imperdiet</td>
-            </tr>
-            <tr>
-              <td>1,007</td>
-              <td>sagittis</td>
-              <td>ipsum</td>
-              <td>Praesent</td>
-            </tr>
-            <tr>
-              <td>1,008</td>
-              <td>Fusce</td>
-              <td>nec</td>
-              <td>tellus</td>
-            </tr>
-            <tr>
-              <td>1,009</td>
-              <td>augue</td>
-              <td>semper</td>
-              <td>porta</td>
-            </tr>
-            <tr>
-              <td>1,010</td>
-              <td>massa</td>
-              <td>Vestibulum</td>
-              <td>lacinia</td>
-            </tr>
-            <tr>
-              <td>1,011</td>
-              <td>eget</td>
-              <td>nulla</td>
-              <td>Class</td>
-            </tr>
-            <tr>
-              <td>1,012</td>
-              <td>taciti</td>
-              <td>sociosqu</td>
-              <td>ad</td>
-            </tr>
-            <tr>
-              <td>1,013</td>
-              <td>torquent</td>
-              <td>per</td>
-              <td>conubia</td>
-            </tr>
-            <tr>
-              <td>1,014</td>
-              <td>per</td>
-              <td>inceptos</td>
-              <td>himenaeos</td>
-            </tr>
-            <tr>
-              <td>1,015</td>
-              <td>sodales</td>
-              <td>ligula</td>
-              <td>in</td>
+            <tr *ngFor="let store of stores">
+              <td>{{ store.id }}</td>
+              <td>{{ store.name }}</td>
+              <td>{{ store.address }}</td>
+              <td>Abierta</td>
             </tr>
           </tbody>
         </table>
