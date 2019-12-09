@@ -16,24 +16,10 @@
 
       <nav class=" bd-links d-flex" id="bd-docs-nav">
         <ul class="list-group">
-          <li
-            [class.active]="hovered"
-            (mouseover)="hovered = true"
-            (mouseout)="statuss ? (hovered = true) : (hovered = false)"
-            class="list-group-item"
-            (click)="statuss = !statuss"
-            [ngClass]="statuss ? 'success' : 'danger'"
-          >
+          <li class="list-group-item">
             Cras justo odio
           </li>
-          <li
-            [class.active]="hoveredd"
-            (mouseover)="hoveredd = true"
-            (mouseout)="status ? (hoveredd = true) : (hoveredd = false)"
-            class="list-group-item"
-            (click)="status = !status"
-            [ngClass]="status ? 'success' : 'danger'"
-          >
+          <li class="list-group-item">
             Cras justo odio
           </li>
           <li class="list-group-item">Vestibulum at eros</li>

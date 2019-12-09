@@ -11,6 +11,7 @@ import { Observable, of } from "rxjs";
 import { switchMap, first } from "rxjs/operators";
 
 import * as firebase from "firebase";
+import * as moment from "moment";
 
 @Injectable({ providedIn: "root" })
 export class StoresService {
@@ -135,21 +136,23 @@ export class StoresService {
     this.afs.collection("sells").add(data);
   }
 
-  getTimeStamp() {
-    const now = new Date();
-    const date =
-      now.getUTCFullYear() +
-      "/" +
-      (now.getUTCMonth() + 1) +
-      "/" +
-      now.getUTCDate();
-    const time =
-      now.getUTCHours() +
-      ":" +
-      (now.getUTCMinutes() + 1) +
-      ":" +
-      now.getUTCSeconds();
-
-    return date + " " + time;
+  getSells() {
+    let Sells = [];
+    this.afs
+      .collection("sells")
+      .get()
+      .subscribe(sells => {
+        sells.forEach(sell => {
+          const ref = sell.data();
+          const Sell = {
+            id: sell.id,
+            created: moment(ref.moment).format("DD MM YYYY hh:mma"),
+            time: moment(ref.moment).fromNow(),
+            ...ref
+          };
+          Sells.push(Sell);
+        });
+      });
+    return Sells;
   }
 }

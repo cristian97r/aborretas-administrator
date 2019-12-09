@@ -4,6 +4,8 @@ import { StoresService } from "../../services/stores.service";
 import { Observable } from "rxjs";
 
 import { User } from "../../models/user.model";
+import * as moment from "moment";
+moment.locale("es");
 
 @Component({
   selector: "app-carrito",
@@ -52,10 +54,11 @@ export class CarritoComponent implements OnInit {
       total: this.Total,
       products: this.productsList,
       storeId: this.storeId,
-      created: new Date()
+      moment: moment()
+        .locale("es")
+        .toLocaleString()
     };
     this.store.checkout(data);
-
     this.Total = 0;
     this.productsList = [];
   }

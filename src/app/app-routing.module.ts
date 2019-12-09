@@ -8,6 +8,7 @@ import { SignupFormComponent } from "./components/signup-form/signup-form.compon
 import { CarritoComponent } from "./containers/carrito/carrito.component";
 import { InventarioComponent } from "./containers/inventario/inventario.component";
 import { AuthGuard } from "./auth.guard";
+import { VentasComponent } from "./containers/ventas/ventas.component";
 
 const routes: Routes = [
   { path: "inicio", component: InicioComponent, canActivate: [AuthGuard] },
@@ -18,7 +19,12 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   { path: "carrito", component: CarritoComponent, canActivate: [AuthGuard] },
-  { path: "inventario", component: InventarioComponent, canActivate: [AuthGuard] },
+  {
+    path: "inventario",
+    component: InventarioComponent,
+    canActivate: [AuthGuard]
+  },
+  { path: "ventas", component: VentasComponent },
   { path: "login", component: LoginFormComponent },
   { path: "signup", component: SignupFormComponent },
   { path: "", redirectTo: "login", pathMatch: "full" }
